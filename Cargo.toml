@@ -1,6 +1,6 @@
 [package]
 name = "simple-examples"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Erik Madsen <beatmadsen@gmail.com>"]
 
 [dependencies]
