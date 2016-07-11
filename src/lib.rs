@@ -2,12 +2,16 @@ pub mod topic;
 use std::num::ParseIntError;
 
 
-fn parse_input(s: &str) -> Result<&str, &str> {
-    let mut iter = s.split(", ");
+pub fn parse_input(s: &str) -> Result<(&str, u8), &str> {
+    let mut iter = s.split(",");
 
     match (iter.next(), iter.next()) {
         (Some(topic), Some(n)) => {
-            Ok("") // TODO: parse n
+            let num: u8 = match n.trim().parse() {
+                Ok(m) => m,
+                Err(_) => { return Err("Bad input"); }
+            };
+            Ok((topic, num))
         },
         _ => Err("Bad input")
     }
