@@ -1,3 +1,9 @@
+extern crate simple_examples;
+use simple_examples::topic::Topic;
+use simple_examples::topic::ex1::Ex1;
+
 fn main() {
-    println!("Hello, world!");
+    Ex1.run_example(42);
+
+    println!("Choose an example ('topic, number')");
 }
