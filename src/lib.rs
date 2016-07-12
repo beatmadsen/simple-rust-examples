@@ -43,7 +43,7 @@ fn should_fail_to_parse_non_number(){
 
     let result = parse_input("Comom, Lomom");
 
-    assert_eq!(result, Err("Bad input"));
+    assert!(result.is_err());
 }
 
 
@@ -52,5 +52,5 @@ fn should_fail_to_parse_missing_comma(){
 
     let result = parse_input("Toldom Acjdul");
 
-    assert_eq!(result, Err("Bad input"));
+    assert!(result.is_err());
 }
