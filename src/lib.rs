@@ -3,10 +3,10 @@ pub mod topic;
 
 pub fn parse_input(s: &str) -> Result<(&str, u8), &str> {
     let mut iter = s.split(",");
-    (match (iter.next(), iter.next()) {
+    match (iter.next(), iter.next()) {
         (Some(topic), Some(n)) => Ok((topic, n)),
         _ => Err("Bad input")
-    }).and_then(|(topic, n)| {
+    }.and_then(|(topic, n)| {
         n.trim()
             .parse::<u8>()
             .map(|num| { (topic, num) })
