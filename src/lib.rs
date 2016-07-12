@@ -1,5 +1,8 @@
 pub mod topic;
 
+use self::topic::Topic;
+use self::topic::elementary::Elementary;
+use std::collections::HashMap;
 
 pub fn parse_input(s: &str) -> Result<(&str, u8), &str> {
     let mut iter = s.split(",");
@@ -15,6 +18,14 @@ fn parse_tuple<'a>(tuple: (&'a str, &str)) -> Result<(&'a str, u8), &'a str> {
         .parse()
         .map(|num| { (topic, num) })
         .or(Err("Bad input"))
+}
+
+pub fn populate_map() -> HashMap<String, Box<Topic>> {
+    let mut map: HashMap<String, Box<Topic>> = HashMap::new();
+
+    map.insert(Elementary.describe(), Box::new(Elementary));
+
+    map
 }
 
 

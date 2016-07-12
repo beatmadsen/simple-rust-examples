@@ -3,6 +3,8 @@
 pub trait Topic {
 
     fn run_example(&self, n: u8);
+
+    fn describe(&self) -> String;
 }
 
-pub mod ex1;
+pub mod elementary;
