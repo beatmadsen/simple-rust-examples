@@ -3,17 +3,15 @@ pub mod topic;
 
 pub fn parse_input(s: &str) -> Result<(&str, u8), &str> {
     let mut iter = s.split(",");
-
-    match (iter.next(), iter.next()) {
-        (Some(topic), Some(n)) => {
-            let num: u8 = match n.trim().parse() {
-                Ok(m) => m,
-                Err(_) => { return Err("Bad input"); }
-            };
-            Ok((topic, num))
-        },
+    (match (iter.next(), iter.next()) {
+        (Some(topic), Some(n)) => Ok((topic, n)),
         _ => Err("Bad input")
-    }
+    }).and_then(|(topic, n)| {
+        n.trim()
+            .parse::<u8>()
+            .map(|num| { (topic, num) })
+            .or(Err("Bad input"))
+    })
 }
 
 
