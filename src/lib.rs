@@ -4,20 +4,20 @@ use self::topic::Topic;
 use self::topic::elementary::Elementary;
 use std::collections::HashMap;
 
-pub fn parse_input(s: &str) -> Result<(&str, u8), &str> {
+pub fn parse_input(s: &str) -> Result<(&str, u8), String> {
     let mut iter = s.split(",");
     match (iter.next(), iter.next()) {
         (Some(topic), Some(n)) => Ok((topic, n)),
-        _ => Err("Bad input")
+        _ => Err(format!("Input '{}' didn't match required pattern", s))
     }.and_then(parse_tuple)
 }
 
-fn parse_tuple<'a>(tuple: (&'a str, &str)) -> Result<(&'a str, u8), &'a str> {
+fn parse_tuple<'a>(tuple: (&'a str, &str)) -> Result<(&'a str, u8), String> {
     let (topic, n) = tuple;
     n.trim()
         .parse()
         .map(|num| { (topic, num) })
-        .or(Err("Bad input"))
+        .or_else(|e| { Err(format!("Failed to parse number from '{}': {}", n, e)) })
 }
 
 pub fn populate_map() -> HashMap<String, Box<Topic>> {

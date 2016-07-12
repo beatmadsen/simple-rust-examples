@@ -15,6 +15,7 @@ fn main() {
         io::stdin().read_line(&mut choice)
             .expect("Failed to read line");
 
+        let choice = choice.trim();
         if choice == "q" || choice == "Q" {
             break;
         }
@@ -27,7 +28,7 @@ fn main() {
             }
         };
 
-        let topic = match map.get(topic) {
+        let topic = match map.get(&topic.to_lowercase()) {
             Some(t) => t,
             None => {
                 println!("Didn't find matching topic: {}", topic);
@@ -39,9 +40,5 @@ fn main() {
 
     }
 
-    println!("Goodbye!")
-
-
-
-
+    println!("Goodbye!");
 }
