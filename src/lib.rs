@@ -2,6 +2,7 @@ pub mod topic;
 
 use self::topic::Topic;
 use self::topic::elementary::Elementary;
+use self::topic::lists_strings::ListStrings;
 use std::collections::HashMap;
 
 pub fn parse_input(s: &str) -> Result<(&str, u8), String> {
@@ -24,6 +25,7 @@ pub fn populate_map() -> HashMap<String, Box<Topic>> {
     let mut map: HashMap<String, Box<Topic>> = HashMap::new();
 
     map.insert(Elementary.describe(), Box::new(Elementary));
+    map.insert(ListStrings.describe(), Box::new(ListStrings));
 
     map
 }

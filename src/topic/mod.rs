@@ -1,4 +1,9 @@
 
+pub trait FirstUpper {
+
+    fn first_upper(&self) -> String;
+}
+
 
 pub trait Topic {
 
@@ -8,3 +13,4 @@ pub trait Topic {
 }
 
 pub mod elementary;
+pub mod lists_strings;
